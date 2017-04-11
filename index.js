@@ -59,6 +59,12 @@ app.use(function(err,req,res,next){
 	});
 });
 
-app.listen(config.port,function(){
-	console.log(`app is listening ${config.port}`);
-});
+if (module.parent) {
+	module.exports = app;
+} else {
+	app.listen(config.port,function(){
+		console.log(`app is listening ${config.port}`);
+	});
+}
+
+	
